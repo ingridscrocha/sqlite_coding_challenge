@@ -20,3 +20,32 @@ GROUP BY products.category
 ORDER BY revenue DESC;
 
 
+-- Task 3
+SELECT
+  employees.first_name,
+  employees.last_name,
+  departments.name AS department_name,
+  employees.salary,
+  department_avg.avg_salary
+FROM employees
+JOIN departments ON departments.id = employees.department_id
+JOIN (
+       SELECT
+         employees.department_id,
+         AVG(employees.salary) AS avg_salary
+       FROM employees
+       GROUP BY employees.department_id
+     ) AS department_avg
+     ON department_avg.department_id = employees.department_id
+WHERE employees.salary > department_avg.avg_salary
+ORDER BY department_name, employees.salary DESC;
+
+
+-- Task 4
+SELECT
+  customers.city,
+  COUNT(*) AS gold_customers
+FROM customers
+WHERE customers.loyalty_level = 'Gold'
+GROUP BY customers.city
+ORDER BY gold_customers DESC, customers.city;
