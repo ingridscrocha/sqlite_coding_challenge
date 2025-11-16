@@ -1,3 +1,12 @@
+/*
+Tool used: SQLite
+How I validated my results:
+- Ran each query individually in the SQLite console.
+- Verified row counts and totals against raw tables using simple SELECT statements.
+- Manually checked sample rows to ensure JOINs pulled the correct data.
+*/
+
+
 -- Task 1
 SELECT
   customers.first_name || ' ' || customers.last_name AS customer_name,
